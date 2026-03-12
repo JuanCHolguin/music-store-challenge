@@ -24,19 +24,20 @@ class Disc:
         self.song_list.append(song)
 
 
-    def sell (self, copies: int):
+    def sell (self, copies: int) -> bool:
 
         if copies > self.quantity:
             return False
         else:
             self.quantity -= copies
             transaction = Transaction(Transaction.SELL, copies)
-            self.transactions.append(Transaction)
+            self.transactions.append(Transaction(Transaction.SELL, copies))
         return True
 
-    def supply (self, copies: int):
+    def supply(self, copies: int):
+
         self.quantity += copies
-        self.transactions.append(Transaction.SUPPLY, copies)
+        self.transactions.append(Transaction(Transaction.SUPPLY, copies))
 
     def copies_sold (self) -> int:
         copias_vendidas = 0
@@ -45,7 +46,7 @@ class Disc:
 
     def __str__(self)-> str:
         canciones = ", ".join(self.song_list)
-        return f"SID: {self.sid}\nTitle: {self.title}\nArtist: {self.artist}\nSong List:{canciones}"
+        return f"SID: {self.sid}\nTitle: {self.title}\nArtist: {self.artist}\nSong List: {canciones}"
 
 class MusicStore:
     def __init__(self) -> None:
