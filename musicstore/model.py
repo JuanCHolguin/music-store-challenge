@@ -63,7 +63,8 @@ class MusicStore:
             return None
         else:
             return self.discs[sid]
-
+    def search_by_artist (self, artist: str) -> list[Disc]:
+        if
 
 
 
