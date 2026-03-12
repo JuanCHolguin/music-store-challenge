@@ -68,7 +68,37 @@ class MusicStore:
         resultado = [x for x in self.discs.values() if x.artist == artist]
         return resultado
 
+    def sell_disc(self, sid: str, copies: int) -> bool:
+        disc = self.search_by_sid(sid)
+        if disc is None:
+            return False
 
+        return disc.sell(copies)
+
+    def supply_disc(self, sid: str, copies: int) -> bool:
+        disc = self.search_by_sid(sid)
+        if disc is None:
+            return False
+
+        disc.supply(copies)
+        return True
+
+    def worst_selling_disc(self) -> Disc | None:
+
+        if not self.discs:
+            return None
+
+        peor = None
+
+        for disc in self.discs.values():
+
+            if peor is None:
+                peor = disc
+
+            elif disc.copies_sold() < peor.copies_sold():
+                peor = disc
+
+        return peor
 
 
 
