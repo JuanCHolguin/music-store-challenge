@@ -64,7 +64,11 @@ class MusicStore:
         else:
             return self.discs[sid]
     def search_by_artist (self, artist: str) -> list[Disc]:
-        if
+
+        resultado = [x for x in self.discs.values() if x.artist == artist]
+        return resultado
+
+
 
 
 
