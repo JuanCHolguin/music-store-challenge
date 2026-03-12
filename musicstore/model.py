@@ -1,8 +1,6 @@
 from datetime import datetime
 from sys import set_int_max_str_digits
 
-
-
 class Transaction:
     SELL: int = 1
     SUPPLY: int = 2
@@ -39,6 +37,33 @@ class Disc:
     def supply (self, copies: int):
         self.quantity += copies
         self.transactions.append(Transaction.SUPPLY, copies)
+
+    def copies_sold (self) -> int:
+        copias_vendidas = 0
+        copias_vendidas = sum(x.copies for x in self.transactions if x.type == Transaction.SELL)
+        return copias_vendidas
+
+    def __str__(self)-> str:
+        canciones = ", ".join(self.song_list)
+        return f"SID: {self.sid}\nTitle: {self.title}\nArtist: {self.artist}\nSong List:{canciones}"
+
+class MusicStore:
+    def __init__(self) -> None:
+        self.discs: dict[str, Disc] = {}
+
+    def add_disc (self, sid: str, title: str, artist: str, sale_price: float, purchase_price: float, quantity: int):
+
+        if sid not in self.discs:
+            disc = Disc(sid, title, artist, sale_price, purchase_price, quantity)
+            self.discs[sid] = disc
+
+    def search_by_sid (self, sid: str) -> Disc | None:
+
+        if sid not in self.discs:
+            return None
+        else:
+            return self.discs[sid]
+
 
 
 

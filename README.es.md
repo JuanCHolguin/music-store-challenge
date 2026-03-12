@@ -38,7 +38,7 @@ El código de la aplicación está incompleto, la idea es completarlo teniendo e
         - Si el parámetro `copies` es mayor que el atributo `quantity` del disco, el método debe devolver `False`.
         - De lo contrario, el método disminuye el atributo `quantity` del disco en el valor del parámetro `copies` y agrega un nuevo objeto `Transaction` a la lista `transactions` con el tipo `Transaction.SELL` y el número de `copies` vendidas.
         - El método debe devolver `True`.
-    - La clase debe tener un método de instancia `supply` que reciba un parámetro `copies` de tipo `int` y haga lo siguiente:
+.type =    - La clase debe tener un método de instancia `supply` que reciba un parámetro `copies` de tipo `int` y haga lo siguiente:
         - Aumenta el atributo `quantity` del disco en el valor del parámetro `copies`.
         - Agrega un nuevo objeto `Transaction` a la lista `transactions` con el tipo `Transaction.SUPPLY` y el número de `copies` suministradas.
     - La clase debe tener un método de instancia `copies_sold` que devuelva un `int` con el número total de copias vendidas.
