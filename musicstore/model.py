@@ -40,10 +40,15 @@ class Disc:
 
     def copies_sold (self) -> int:
         copias_vendidas = 0
-        copias_vendidas = sum(x.copies for x in self.transactions if x.type == Transaction.SELL)
+        copias_vendidas = sum([x.copies for x in self.transactions if x.type == Transaction.SELL])
         return copias_vendidas
 
+        '''for transaction in self.transactions:
+              if transaction.type == Transaction.SELL:
+                    copies_sum += transaction.copies_sold()'''
+
     def __str__(self)-> str:
+
         canciones = ", ".join(self.song_list)
         return f"SID: {self.sid}\nTitle: {self.title}\nArtist: {self.artist}\nSong List: {canciones}"
 
@@ -64,6 +69,7 @@ class MusicStore:
         else:
             return self.discs[sid]
     def search_by_artist (self, artist: str) -> list[Disc]:
+        ''''''
 
         resultado = [x for x in self.discs.values() if x.artist == artist]
         return resultado
@@ -99,6 +105,13 @@ class MusicStore:
                 peor = disc
 
         return peor
+    '''  copies_sold_by_disc = {}
+         for disc in self.discs.values():
+            for t in self.transactions:
+                if t.type == Transaction.SELL:
+                    copies_sold_by_disc[disc] += t.copies
+         
+         return min(copies_sold_by_disc, key=copies_sold_by_disc.get) '''
 
 
 
